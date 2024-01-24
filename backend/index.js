@@ -9,12 +9,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [
-      "http://127.0.0.1:5173",
-      "http://localhost:5173",
-      "https://paytm-clone-trithvik07.vercel.app/",
-      "https://paytm-clone-kappa-vert.vercel.app/",
-    ],
+    origin: false,
     allowedHeaders: ["*"],
     credentials: true,
   })
