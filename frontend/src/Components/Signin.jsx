@@ -77,7 +77,7 @@ const Signin = () => {
         )}
         <Link to={"/signup"}>
           <span className="text-sm font-semibold">
-            Already have an account ? Signup
+            Don't have an account ? Signup
           </span>
         </Link>
       </form>
