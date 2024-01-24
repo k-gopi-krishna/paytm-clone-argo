@@ -10,7 +10,8 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "*",
-    allowedHeaders: ["*"],
+    // allowedHeaders: ["*"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
 );
@@ -19,6 +20,7 @@ app.options(
   cors({
     origin: "*",
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
 app.use(
