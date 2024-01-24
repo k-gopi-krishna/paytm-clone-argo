@@ -19,11 +19,11 @@ const Dashboard = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:3000/api/v1/user/bulk?filter=${inp}`
+          `https://paytm-clone-backend.vercel.app/api/v1/user/bulk?filter=${inp}`
         );
         setUsers(res.data.users);
         const bal = await axios.get(
-          "http://localhost:3000/api/v1/account/balance",
+          "https://paytm-clone-backend.vercel.app/api/v1/account/balance",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

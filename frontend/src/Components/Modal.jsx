@@ -10,7 +10,7 @@ const Modal = () => {
   async function sendMoney() {
     try {
       await axios.post(
-        "http://localhost:3000/api/v1/account/transfer",
+        "https://paytm-clone-backend.vercel.app/api/v1/account/transfer",
         {
           amount: inp,
           to: modal.user._id,
