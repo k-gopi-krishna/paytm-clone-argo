@@ -15,7 +15,7 @@ app.use(
       "https://paytm-clone-trithvik07.vercel.app/",
       "https://paytm-clone-kappa-vert.vercel.app/",
     ],
-    // allowedHeaders: ["*"],
+    allowedHeaders: ["*"],
     credentials: true,
   })
 );
