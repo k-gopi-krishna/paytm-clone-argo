@@ -19,10 +19,7 @@ const Signup = () => {
       setLoading(true);
       const result = await axios.post(
         "https://paytm-clone-backend.vercel.app/api/v1/user/signup",
-        details,
-        {
-          withCredentials: true,
-        }
+        details
       );
       console.log(result.data);
       navigate("/");

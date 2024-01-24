@@ -12,14 +12,12 @@ app.use(
     origin: "*",
     // allowedHeaders: ["*"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
   })
 );
 app.options(
   "/api/v1/user/sigin",
   cors({
     origin: "*",
-    credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
