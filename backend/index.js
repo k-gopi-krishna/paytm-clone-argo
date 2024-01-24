@@ -14,7 +14,14 @@ app.use(
     credentials: true,
   })
 );
-app.options("/api/v1/user/sigin", cors());
+app.options(
+  "/api/v1/user/sigin",
+  cors({
+    origin: "https://paytm-clone-kappa-vert.vercel.app",
+    allowedHeaders: ["*"],
+    credentials: true,
+  })
+);
 app.use(
   bodyParser({
     limit: "50mb",
