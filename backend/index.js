@@ -9,7 +9,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://paytm-clone-kappa-vert.vercel.app",
+    origin: "*",
     allowedHeaders: ["*"],
     credentials: true,
   })
@@ -17,7 +17,7 @@ app.use(
 app.options(
   "/api/v1/user/sigin",
   cors({
-    origin: "https://paytm-clone-kappa-vert.vercel.app",
+    origin: "*",
     credentials: true,
   })
 );
