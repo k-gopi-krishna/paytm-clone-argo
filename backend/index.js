@@ -18,7 +18,6 @@ app.options(
   "/api/v1/user/sigin",
   cors({
     origin: "https://paytm-clone-kappa-vert.vercel.app",
-    allowedHeaders: ["*"],
     credentials: true,
   })
 );
