@@ -14,7 +14,9 @@ app.use(
     credentials: true,
   })
 );
-
+app.get("/", () => {
+  return "HEllo";
+});
 app.use(
   bodyParser({
     limit: "50mb",
