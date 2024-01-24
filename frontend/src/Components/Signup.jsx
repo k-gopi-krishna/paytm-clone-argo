@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
 const Signup = () => {
   const [details, setDetails] = useState({
@@ -96,9 +96,11 @@ const Signup = () => {
             Sign Up
           </button>
         )}
-        <span className="text-sm font-semibold">
-          Already have an account ? Login
-        </span>
+        <Link to={"/signin"}>
+          <span className="text-sm font-semibold">
+            Already have an account ? Login
+          </span>
+        </Link>
       </form>
     </div>
   );
