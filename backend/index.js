@@ -9,11 +9,12 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: false,
+    origin: "https://paytm-clone-kappa-vert.vercel.app",
     allowedHeaders: ["*"],
     credentials: true,
   })
 );
+app.options("/api/v1/user/sigin", cors());
 app.use(
   bodyParser({
     limit: "50mb",
