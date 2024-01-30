@@ -40,7 +40,7 @@ const Dashboard = () => {
     getUser();
   }, [inp]);
   return (
-    <div className="h-[100vh] bg-white text-black">
+    <div className="h-full bg-white text-black">
       <header className="flex items-center justify-between border-b-[1px] border-slate p-5">
         <h1 className="font-bold text-2xl">Payments App</h1>
         <div className="flex gap-3 items-center ">
