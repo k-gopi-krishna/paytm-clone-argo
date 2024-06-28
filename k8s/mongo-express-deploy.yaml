@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-express
+  namespace: default
+  labels:
+    app: mongo-express
+spec:
+  selector:
+    matchLabels:
+      app: mongo-express
+  replicas: 1
+
+  template:
+    metadata:
+      labels:
+        app: mongo-express
+    spec:
+      # initContainers:
+      # Init containers are exactly like regular containers, except:
+      # - Init containers always run to completion.
+      # - Each init container must complete successfully before the next one starts.
+      containers:
+        - name: mongo-express
+          image: mongo-express
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+          # resources:
+          #   requests:
+          #     cpu: 100m
+          #     memory: 100Mi
+          #   limits:
+          #     cpu: 100m
+          #     memory: 100Mi
+          # livenessProbe:
+          #   tcpSocket:
+          #     port: 80
+          #   initialDelaySeconds: 5
+          #   timeoutSeconds: 5
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          #   periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /_status/healthz
+          #     port: 80
+          #   initialDelaySeconds: 5
+          #   timeoutSeconds: 2
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          #   periodSeconds: 10
+          env:
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: mongo-user
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: mongo-password
+            - name: ME_CONFIG_MONGODB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: mongo-url
+
+          ports:
+            - containerPort: 3000
+              name: mongo-express
+      #   volumeMounts:
+      #   - name: localtime
+      #     mountPath: /etc/localtime
+      # volumes:
+      #   - name: localtime
+      #     hostPath:
+      #       path: /usr/share/zoneinfo/Asia/Shanghai
+      # restartPolicy: Always
