@@ -41,7 +41,7 @@ const Signin = () => {
       <form className="flex flex-col gap-4 items-center mx-7">
         <div className="flex flex-col items-start gap-4">
           <div className="flex flex-col gap-2">
-            <label className="font-semibold text-sm">Usernames</label>
+            <label className="font-semibold text-sm">Please enter your username</label>
             <input
               value={details.name}
               onChange={handleInputChange}
