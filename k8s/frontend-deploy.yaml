@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend-deploy
-          image: gopikondaji/frontend:29
+          image: gopikondaji/frontend:30
           resources:
             requests:
               cpu: 200m
