@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deploy
+  name: 25-deploy
   namespace: default
   labels:
-    app: frontend-deploy
+    app: 25-deploy
 spec:
   selector:
     matchLabels:
-      app: frontend-deploy
+      app: 25-deploy
   replicas: 1
 
   template:
     metadata:
       labels:
-        app: frontend-deploy
+        app: 25-deploy
     spec:
       containers:
-        - name: frontend-deploy
-          image: gopikondaji/frontend:20
+        - name: 25-deploy
+          image: gopikondaji/2520
           resources:
             requests:
               cpu: 200m
@@ -28,6 +28,6 @@ spec:
               memory: 500Mi
           ports:
             - containerPort: 5173
-              name: frontend-deploy
+              name: 25-deploy
 
       restartPolicy: Always
