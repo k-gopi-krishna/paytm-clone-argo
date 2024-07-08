@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  backend-deploy
+  namespace: default
+  labels:
+    app:  backend-deploy
+spec:
+  selector:
+    matchLabels:
+      app: backend-deploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  backend-deploy
+    spec:
+      containers:
+      - name:  backend-deploy
+        image:  gopikondaji/backend1:latest
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 5000Mi
+          limits:
+            cpu: 1010m
+            memory: 5010Mi
+        ports:
+        - containerPort:  3000
+          name:  backend-deploy
+      restartPolicy: Always

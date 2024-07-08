@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+  namespace: default
+  labels:
+    app: frontend-deploy
+spec:
+  selector:
+    matchLabels:
+      app: frontend-deploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frontend-deploy
+    spec:
+      # initContainers:
+      # Init containers are exactly like regular containers, except:
+      # - Init containers always run to completion.
+      # - Each init container must complete successfully before the next one starts.
+      containers:
+        - name: frontend-deploy
+          image: gopikondaji/frontend698
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+          ports:
+            - containerPort: 5173
+              name: frontend-deploy
+      restartPolicy: Always
