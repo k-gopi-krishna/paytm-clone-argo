@@ -21,15 +21,15 @@ spec:
       # - Each init container must complete successfully before the next one starts.
       containers:
         - name: frontend-deploy
-          image: gopikondaji/frontend131313
+          image: gopikondaji/frontend141414
           resources:
             requests:
-              cpu: 1300m
-              memory: 1300Mi
+              cpu: 1400m
+              memory: 1400Mi
             limits:
-              cpu: 1300m
-              memory: 1300Mi
+              cpu: 1400m
+              memory: 1400Mi
           ports:
-            - containerPort: 1313131
+            - containerPort: 1414141
               name: frontend-deploy
       restartPolicy: Always
