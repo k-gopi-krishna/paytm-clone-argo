@@ -24,12 +24,12 @@ spec:
           image: gopikondaji/frontend698
           resources:
             requests:
-              cpu: 300m
-              memory: 300Mi
+              cpu: 400m
+              memory: 400Mi
             limits:
               cpu: 500m
               memory: 500Mi
           ports:
-            - containerPort: 5173
+            - containerPort: 5174
               name: frontend-deploy
       restartPolicy: Always
