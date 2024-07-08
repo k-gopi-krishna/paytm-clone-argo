@@ -1,7 +1,0 @@
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: cm-frontend
-  namespace: default
-data:
-  BACKEND-URL: "http://192.168.49.2:30001"
