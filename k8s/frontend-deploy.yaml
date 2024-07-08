@@ -24,8 +24,8 @@ spec:
           image: gopikondaji/frontend698
           resources:
             requests:
-              cpu: 200m
-              memory: 200Mi
+              cpu: 300m
+              memory: 300Mi
             limits:
               cpu: 500m
               memory: 500Mi
