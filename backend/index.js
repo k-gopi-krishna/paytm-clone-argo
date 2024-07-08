@@ -27,7 +27,10 @@ app.use(
   })
 );
 async function connetToDB() {
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect('mongodb://mongo-svc/testdb?directConnection=true')
+  .then(() => {
+    console.log("Connected to DB");
+  })
 }
 
 connetToDB();
@@ -36,4 +39,5 @@ app.use("/api/v1", router);
 
 app.listen(3000, () => {
   console.log("App running on port 3000");
+  
 });
