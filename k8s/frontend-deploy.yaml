@@ -21,7 +21,7 @@ spec:
       # - Each init container must complete successfully before the next one starts.
       containers:
         - name: frontend-deploy
-          image: gopikondaji/frontend:$({BUILD_NUMBER})
+          image: gopikondaji/frontend:$(BUILD_NUMBER)
           resources:
             requests:
               cpu: 2400m
