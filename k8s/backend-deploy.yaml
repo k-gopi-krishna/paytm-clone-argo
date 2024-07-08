@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name:  backend-deploy
-        image: gopikondaji/backend:1
+        image: gopikondaji/backend:2
         resources:
           requests:
             cpu: 1000m
