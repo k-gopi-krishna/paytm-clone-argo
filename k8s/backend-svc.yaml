@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+  namespace: default
+spec:
+  selector:
+    app: backend-deploy
+  type: NodePort
+  ports:
+  - name: backend-svc
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+    # If you set the `spec.type` field to `NodePort` and you want a specific port number,
+    # you can specify a value in the `spec.ports[*].nodePort` field.
+    nodePort: 30001
