@@ -10,7 +10,7 @@ function useLoggedUser(token) {
       try {
         setIsLoading(true);
         const result = await axios.get(
-          "https://paytm-clone-backend.vercel.app/api/v1/user/getuser",
+          "http://192.168.49.2:30001/api/v1/user/getuser",
           {
             headers: {
               Authorization: `Bearer ${token}`,

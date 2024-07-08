@@ -1,0 +1,64 @@
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+        git branch: 'main', url: 'https://github.com/k-gopi-krishna/paytm-clone.git'
+      }
+    }
+    stage('Build and Test ') {
+      steps {
+        // sh 'ls -ltr'
+        // build the project and create a JAR file
+        sh 'cd frontend && npm install && docker build -t gopikondaji/frontend . && cd ../backend && npm install && docker build -t gopikondaji/backend .'
+        // sh 'npm test' commented because no tests was written by developer (Note: I didn't build this application)
+      }
+    }
+    
+    stage('Push Docker Image') {
+      environment {
+        DOCKER_FRONTEND = "gopikondaji/frontend"
+        DOCKER_BACKEND = "gopikondaji/backend"
+        // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
+        REGISTRY_CREDENTIALS = credentials('docker')
+      }
+      steps {
+        script {
+            sh 'cd frontend && docker build -t ${DOCKER_FRONTEND}:${BUILD_NUMBER} . && cd ../backend && docker build -t ${DOCKER_BACKEND}:${BUILD_NUMBER} .  '
+            def dockerImage1 = docker.image("${DOCKER_FRONTEND}:${BUILD_NUMBER}")
+            def dockerImage2 = docker.image("${DOCKER_BACKEND}:${BUILD_NUMBER}")
+            docker.withRegistry('https://index.docker.io/v1/', "docker") {
+                dockerImage1.push()
+                dockerImage2.push()
+                
+            }
+        }
+      }
+    }
+    stage('Update Deployment File') {
+        environment {
+            GIT_REPO_NAME = "paytm-clone"
+            GIT_USER_NAME = "k-gopi-krishna"
+        }
+        steps {
+            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+                    git config user.email "kondajigopi1@gmail.com"
+                    git config user.name "k-gopi-krishna"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                     sed -i "s/$((${BUILD_NUMBER}-1))/${BUILD_NUMBER}/g" k8s/frontend-deploy.yaml
+                    
+                      sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" k8s/mongo-express-deploy.yaml
+                    git add .
+                    
+                    git add k8s/frontend-deploy.yaml
+                    git add k8s/mongo-express-deploy.yaml
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+            }
+        }
+    }
+  }
+}

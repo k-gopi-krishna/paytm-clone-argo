@@ -16,7 +16,7 @@ const EditInfo = ({ setShowModal }) => {
   const handleEditInfo = async () => {
     try {
       await axios.put(
-        "https://paytm-clone-backend.vercel.app/api/v1/user/update",
+        "http://192.168.49.2:30001/api/v1/user/update",
         {
           firstname: info.firstname,
           lastname: info.lastname,
