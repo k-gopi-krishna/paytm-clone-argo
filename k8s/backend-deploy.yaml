@@ -19,12 +19,12 @@ spec:
       - name:  backend-deploy
         image: gopikondaji/backend:2
         resources:
-          requests:
-            cpu: 1000m
-            memory: 5000Mi
-          limits:
-            cpu: 1010m
-            memory: 5010Mi
+            limits:
+              cpu: 4010m
+              memory: 5010Mi
+            requests:
+              cpu: '4'
+              memory: 5000Mi
         ports:
         - containerPort:  3000
           name:  backend-deploy
